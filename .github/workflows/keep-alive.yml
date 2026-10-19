@@ -12,11 +12,4 @@ jobs:
     steps:
       - name: Ping Hugging Face Space
         run: |
-          # 嘗試發送請求，即使回傳非 200 也先記錄下來，避免腳本直接中斷
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://kurama6115-n8n-free.hf.space/ || echo "000")
-          
-          echo "Ping response status code: $response"
-          
-          # 不管狀態碼為何，都讓 GitHub Action 順利完成（exit 0），
-          # 因為只要有發送請求就能成功喚醒 Hugging Face Space。
-          exit 0
+          curl -s -L -f "https://kurama6115-n8n-free.hf.space/" || echo "Ping f
